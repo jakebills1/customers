@@ -20,9 +20,20 @@ class CustomersController < ApplicationController
     # Active record
     # @customer = current_user.customers.new(customer_params)
     Customer.create_customer(customer_params, current_user.id)
+    redirect_to customers_path
   end
 
   def edit
+  end
+
+  def update
+    Customer.update_customer(customer_params, @customer.id)
+    redirect_to customers_path
+  end
+
+  def destroy
+    Customer.delete_customer(@customer.id)
+    redirect_to customers_path
   end
 
   private
